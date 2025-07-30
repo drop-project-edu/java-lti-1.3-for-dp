@@ -1,125 +1,18 @@
 # LTI 1.3 & LTI Advantage Java Library
 
-Library implementing a full [LTI Advantage](https://www.imsglobal.org/activity/learning-tools-interoperability) tool.
+This is a fork of the LTI 1.3 library, with no source code modification, just for convenience, to be used by Drop Project.
 
 ## Install
 This library depends on two additional libraries:
 
-* [LTI 1.3 core](https://github.com/UOC/java-lti-1.3-core)
-* [LTI 1.3 JWT](https://github.com/UOC/java-lti-1.3-jwt) for testing
+* [LTI 1.3 core](https://github.com/drop-project-edu/java-lti-1.3-core-for-dp)
+* [LTI 1.3 JWT](https://github.com/drop-project-edu/java-lti-1.3-jwt-for-dp) for testing
 
-Install it using maven:
+It can be installed using maven:
 
-```bash
-./mvnw install
-```
-
-## Documentation
-
-The basic class in the library is `edu.uoc.elc.lti.tool.Tool`, which defines a Tool. It has the basic methods:
-
-* `public boolean validate(String token, String state)`
-* `public AccessTokenResponse getAccessToken() throws IOException, BadToolProviderConfigurationException`
-* `public NamesRoleService getNameRoleService()`
-* `public DeepLinkingClient getDeepLinkingClient()` 
-* `public AssignmentGradeService getAssignmentGradeService()`
-
-It also has utility methods for getting claims in an agnostic way
-
-## Configuration
-
-Configuration of the Tool is made through the classes `edu.uoc.elc.lti.tool.Registration`, `edu.uoc.elc.lti.tool.KeySet`, `edu.uoc.elc.lti.tool.Key` and `edu.uoc.elc.lti.tool.Deployment`. 
-There you can set the following parameters of the tool:
-
-### Key
-* `id`: id of the key
-* `privateKey`: private key of the key
-* `publicKey`: public key of the key
-* `algorithm`: algorithm of the key, usually `RSA`S
-
-## KeySet
-* `id`: id of the keyset
-* `keys`: list of keys of the keyset
-
-## Deployment
-* `deploymentId`: Id of the deployment
-
-## Registration
-* `clientId`
-* `name`: Name of the tool
-* `platform`: Name of the platform
-* `keySetUrl`: URL of the platform's keyset
-* `accessTokenUrl`: URL of the platform's access token
-* `oidcAuthUrl`: URL of the platform's OIDC auth
-* `deployments`: List of deployments
-* `keySet`: KeySet
-
-Tool uses [LTI 1.3 core](https://github.com/UOC/java-lti-1.3-core#about) interfaces for dealing 
-with requests and JWT generation. The definition of the implementations of these interfaces are
-in the `edu.uoc.elc.lti.tool.ToolBuilders` class
- 
-## Usage
-
-1. Set your maven installation to work with Github packages, following the [Github Docs](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages#authenticating-to-github-packages). Add the following configuration to your maven `settings.xml` file:
-
-    ```xml
-    <servers>
-      <server>
-        <id>github-uoc-lti</id>
-        <username>USERNAME</username>
-        <password>GITHUB_TOKEN</password>
-      </server>
-      <server>
-        <id>github-uoc-lti-core</id>
-        <username>USERNAME</username>
-        <password>GITHUB_TOKEN</password>
-      </server>
-      <server>
-        <id>github-uoc-lti-jwt</id>
-        <username>USERNAME</username>
-        <password>GITHUB_TOKEN</password>
-      </server>
-    </servers>
-    ```
-
-2. Add the dependency to your `pom.xml` file:
-
-    ```xml
     <dependency>
-      <groupId>edu.uoc.elc.lti</groupId>
-      <artifactId>lti-13</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-    ```  
+	    <groupId>org.dropproject</groupId>
+	    <artifactId>lti-13-for-dp</artifactId>
+	    <version>1.0.0</version>
+	</dependency>
 
-3. Add the following repositories to your `pom.xml` file & verify that the repositories's IDs matches the server's IDs (set at step 1):
-
-    ```xml
-    <repositories>
-        <repository>
-          <id>github-uoc-lti-core</id>
-          <name>GitHub UOC Apache Maven Packages</name>
-          <url>https://maven.pkg.github.com/uoc/java-lti-1.3-core</url>
-        </repository>				
-        <repository>
-          <id>github-uoc-lti-jwt</id>
-          <name>GitHub UOC Apache Maven Packages</name>
-          <url>https://maven.pkg.github.com/uoc/java-lti-1.3-jwt</url>
-        </repository>				
-        <repository>
-          <id>github-uoc-lti</id>
-          <name>GitHub UOC Apache Maven Packages</name>
-          <url>https://maven.pkg.github.com/uoc/java-lti-1.3</url>
-        </repository>
-    </repositories>
-    ```
-
-## Contributing
-
-Thanks for being interested in this project. The way of contributing is the common for almost all projects:
-
-1. Fork the project to your account
-2. Implement your changes
-3. Make a pull request
-
-If you need further information contact to `xaracil at uoc dot edu`

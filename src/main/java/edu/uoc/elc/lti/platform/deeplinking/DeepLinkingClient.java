@@ -60,7 +60,7 @@ public class DeepLinkingClient {
 
 	public String buildJWT() {
 		DeepLinkingResponse deepLinkingResponse = new DeepLinkingResponse(platformName,
-						clientId, azp, deploymentId, nonce, settings.getData(), itemList);
+						clientId, azp, deploymentId, nonce, settings.getData(), null, itemList);
 		return deepLinkingTokenBuilder.build(deepLinkingResponse);
 	}
 }
